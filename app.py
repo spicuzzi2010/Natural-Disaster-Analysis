@@ -1,3 +1,4 @@
+from model import Earthquakes
 from flask import Flask, render_template, redirect
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -9,12 +10,20 @@ migrate = Migrate(app, db)
 
 @app.route("/")
 def home():
-    mars_data = mongo.db.collection.find_one()
-    return render_template("index.html", mars=mars_data)
+    return render_template("index.html" map=map_data)
 
 @app.route("/map")
 def map():
+    earthquakes = Earthquakes.query.all()
+    results = [
+        {
+           "date": quake.date,
+            "lat": quake.lat,
+            "lon": quake.lon,
+            "lon": quake.mag,
+        } for quake in earthquakes]
 
+    return {"count": len(results), "cars": results}
 
 
 if __name__ == "__main__":
