@@ -8,7 +8,7 @@ db = SQLAlchemy(app)
 
 @app.route("/")
 def home():
-    return render_template("index.html" map=map_data)
+    return render_template("index.html", quake=results)
 
 @app.route("/map")
 def map():
