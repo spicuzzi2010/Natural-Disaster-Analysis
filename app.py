@@ -1,12 +1,10 @@
 from model import Earthquakes
 from flask import Flask, render_template, redirect
 from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:postgres@localhost:5432/disasters"
 db = SQLAlchemy(app)
-migrate = Migrate(app, db)
 
 @app.route("/")
 def home():
@@ -17,10 +15,11 @@ def map():
     earthquakes = Earthquakes.query.all()
     results = [
         {
+           "year":quake.year,
            "date": quake.date,
             "lat": quake.lat,
             "lon": quake.lon,
-            "lon": quake.mag,
+            "lon": quake.mag
         } for quake in earthquakes]
 
     return {"count": len(results), "cars": results}
