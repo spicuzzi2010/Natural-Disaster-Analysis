@@ -10,6 +10,10 @@ db = SQLAlchemy(app)
 
 @app.route("/")
 def home():
+    return render_template("index.html")
+
+@app.route("/map")
+def map():
     earthquakes = Earthquakes.query.all()
     tornados = Tornados.query.all()
     quake_results = [
@@ -29,12 +33,8 @@ def home():
             "lat": tornado.lat,
             "lon": tornado.lon
         } for tornado in tornados]
-    return render_template("index.html", t_data=tornado_results, q_data=quake_results)
 
-# @app.route("/map")
-# def map():
-
-#     return redirect("/", code=302)
+    return quake_results, tornado_results
 
 
 if __name__ == "__main__":

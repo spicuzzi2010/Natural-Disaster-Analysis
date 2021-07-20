@@ -66,5 +66,5 @@ anime.timeline({ loop: true })
         opacity: 100,
         duration: 400000,
         easing: "easeOutExpo",
-        delay: 100
+        delay: 10
     });
