@@ -1,6 +1,6 @@
-const url = "/map"
+const quake_url = "/api/earthquakes"
 
-d3.json(url).then(data => {
+d3.json(quake_url).then(data => {
     console.log(data)
 });
 // Create the tile layer that will be the background of our map

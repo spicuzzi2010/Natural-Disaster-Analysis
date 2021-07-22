@@ -13,10 +13,9 @@ db = SQLAlchemy(app)
 def home():
     return render_template("index.html")
 
-@app.route("/map")
-def map():
+@app.route("/api/earthquakes")
+def earthquakes():
     e_results = db.session.query(models.Earthquakes.lat, models.Earthquakes.lon, models.Earthquakes.mag, models.Earthquakes.year, models.Earthquakes.date).all()
-    t_results = db.session.query(models.Tornados.lat, models.Tornados.lon, models.Tornados.mag, models.Tornados.year, models.Tornados.date).all()
     
     e_lat = [result[0] for result in e_results]
     e_lon = [result[1] for result in e_results]
@@ -33,6 +32,12 @@ def map():
             "year": e_year
         }]
 
+    return jsonify(earthquake_data)
+
+@app.route("/api/tornados")
+def tornados():
+    t_results = db.session.query(models.Tornados.lat, models.Tornados.lon, models.Tornados.mag, models.Tornados.year, models.Tornados.date).all()
+
     t_lat = [result[0] for result in t_results]
     t_lon = [result[1] for result in t_results]
     t_mag = [result[2] for result in t_results]
@@ -47,9 +52,8 @@ def map():
             "lat": t_lat,
             "lon": t_lon
         }]
-    print(earthquake_data)
-    return jsonify(earthquake_data, tornado_data)
-
+    
+    return jsonify(tornado_data)
 
 if __name__ == "__main__":
     app.run(debug=True)
