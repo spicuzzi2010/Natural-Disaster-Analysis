@@ -1,3 +1,8 @@
+const url = "/map"
+
+d3.json(url).then(data => {
+    console.log(data)
+});
 // Create the tile layer that will be the background of our map
 var lightmap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
     attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
@@ -9,7 +14,7 @@ var lightmap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{
 // Initialize all of the LayerGroups we'll be using
 var layers = {
     Tornadoes: new L.LayerGroup(),
-    Wildfires: new L.LayerGroup()
+    Earthquakes: new L.LayerGroup()
 };
 
 // Create the map with our layers
@@ -18,7 +23,7 @@ var myMap = L.map("map-id", {
     zoom: 5,
     layers: [
         layers.Tornadoes,
-        layers.Wildfires
+        layers.Earthquakes
     ]
 });
 
@@ -28,11 +33,12 @@ lightmap.addTo(myMap);
 // Create an overlays object to add to the layer control
 var overlays = {
     "Tornadoes": layers.Tornadoes,
-    "Wildfires": layers.Wildfires
+    "Earthquakes": layers.Earthquakes
 };
 
 // Create a control for our layers, add our overlay layers to it
 L.control.layers(null, overlays).addTo(myMap);
+
 
 var info = L.control({
     position: "bottomright"
