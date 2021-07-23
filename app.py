@@ -5,7 +5,7 @@ import os
 from config import password
 
 app = Flask(__name__, template_folder='templates')
-app.config['SQLALCHEMY_DATABASE_URI'] = f"postgresql://postgres:{password}@localhost:5432/disaster_db"
+app.config['SQLALCHEMY_DATABASE_URI'] = f"postgresql://postgres:{password}@localhost:5432/natural_disasters"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -13,47 +13,43 @@ db = SQLAlchemy(app)
 def home():
     return render_template("index.html")
 
-@app.route("/api/earthquakes")
-def earthquakes():
-    e_results = db.session.query(models.Earthquakes.lat, models.Earthquakes.lon, models.Earthquakes.mag, models.Earthquakes.year, models.Earthquakes.date).all()
+@app.route("/api/disasters")
+def disaster():
+    results = db.session.query(models.Disaster.id,
+                                    models.Disaster.county,
+                                    models.Disaster.state, 
+                                    models.Disaster.lat, 
+                                    models.Disaster.lon, 
+                                    models.Disaster.year, 
+                                    models.Disaster.date,
+                                    models.Disaster.disastertype,
+                                    models.Disaster.declarationtitle).all()
     
-    e_lat = [result[0] for result in e_results]
-    e_lon = [result[1] for result in e_results]
-    e_mag = [result[2] for result in e_results]
-    e_year = [result[3] for result in e_results]
-    e_date = [result[4] for result in e_results]
     
-    earthquake_data = [
+    id = [result[0] for result in results]
+    county = [result[1] for result in results]
+    state = [result[2] for result in results]
+    lat = [result[3] for result in results]
+    lon = [result[4] for result in results]
+    year = [result[5] for result in results]
+    date = [result[6] for result in results]
+    type = [result[7] for result in results]
+    title = [result[8] for result in results]
+    
+    data = [
         {
-            "lat": e_lat,
-            "lon": e_lon,
-            "mag": e_mag,
-            "date": e_date,
-            "year": e_year
+            "id":id,
+            "county":county,
+            "state":state,
+            "lat":lat,
+            "lon":lon,
+            "year":year,
+            "date":date,
+            "type":type,
+            "title":title          
         }]
 
-    return jsonify(earthquake_data)
-
-@app.route("/api/tornados")
-def tornados():
-    t_results = db.session.query(models.Tornados.lat, models.Tornados.lon, models.Tornados.mag, models.Tornados.year, models.Tornados.date).all()
-
-    t_lat = [result[0] for result in t_results]
-    t_lon = [result[1] for result in t_results]
-    t_mag = [result[2] for result in t_results]
-    t_year = [result[3] for result in t_results]
-    t_date = [result[4] for result in t_results]
-
-    tornado_data = [
-        {
-            "year": t_year,
-            "date": t_date,
-            "mag": t_mag,
-            "lat": t_lat,
-            "lon": t_lon
-        }]
-    
-    return jsonify(tornado_data)
+    return jsonify(data)
 
 if __name__ == "__main__":
     app.run(debug=True)
