@@ -53,6 +53,7 @@ info.onAdd = function() {
 // Add the info legend to the map
 info.addTo(myMap);
 
+
 // Wrap every letter in a span
 var textWrapper = document.querySelector('.ml3');
 textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
