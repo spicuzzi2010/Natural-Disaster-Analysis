@@ -25,7 +25,6 @@ def disaster():
                                     models.Disaster.disastertype,
                                     models.Disaster.declarationtitle).all()
     
-    
     id = [result[0] for result in results]
     county = [result[1] for result in results]
     state = [result[2] for result in results]
@@ -38,16 +37,16 @@ def disaster():
     
     data = [
         {
-            "id":id,
-            "county":county,
-            "state":state,
-            "lat":lat,
-            "lon":lon,
-            "year":year,
-            "date":date,
-            "type":type,
-            "title":title          
-        }]
+            "id":id[x],
+            "county":county[x],
+            "state":state[x],
+            "lat":lat[x],
+            "lon":lon[x],
+            "year":year[x],
+            "date":date[x],
+            "type":type[x],
+            "title":title[x]         
+        } for x in range(len(id))]
 
     return jsonify(data)
 
