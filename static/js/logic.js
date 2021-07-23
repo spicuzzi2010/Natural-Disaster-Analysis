@@ -53,9 +53,7 @@ info.onAdd = function() {
 // Add the info legend to the map
 info.addTo(myMap);
 
-<<<<<<< HEAD
-https://www.ncdc.noaa.gov/swdiws/geojson/nx3tvs/19800101:20210101
-=======
+
 // Wrap every letter in a span
 var textWrapper = document.querySelector('.ml3');
 textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
@@ -77,4 +75,3 @@ anime.timeline({ loop: true })
         easing: "easeOutExpo",
         delay: 10
     });
->>>>>>> c96f8f1bb523a26575b5b028839055429fd352b4
