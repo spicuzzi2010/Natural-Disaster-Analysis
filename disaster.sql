@@ -1,5 +1,5 @@
 CREATE TABLE disaster(
-	id SERIAL Primary Key,
+    id SERIAL Primary Key,
     county VARCHAR,
     state VARCHAR,
 	lat FLOAT,
