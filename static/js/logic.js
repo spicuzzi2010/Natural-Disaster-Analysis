@@ -14,8 +14,7 @@ function createMap(layers) {
         center: [39.82, -98.57],
         zoom: 5,
         layers: [
-            layers.Tornadoes,
-            layers.Fires
+            layers.Earthquakes
         ]
     });
 
@@ -24,8 +23,14 @@ function createMap(layers) {
 
     // Create an overlays object to add to the layer control
     var overlays = {
+        "Earthquakes": layers.Earthquakes,
         "Tornadoes": layers.Tornadoes,
-        "Fires": layers.Fires
+        "Fires": layers.Fires,
+        "Hurricanes": layers.Hurricanes,
+        "Floods": layers.Floods,
+        "Severe Ice Storms": layers.Ice,
+        "Mud/Landslides": layers.Landslides,
+        "Tsunamis": layers.Tsunamis
     };
 
     // Create a control for our layers, add our overlay layers to it
@@ -54,12 +59,17 @@ function createMap(layers) {
 function createMarkers(disasters) {
     var disasterType;
     var layers = {
+        Earthquakes: new L.LayerGroup(),
         Tornadoes: new L.LayerGroup(),
-        Fires: new L.LayerGroup()
+        Fires: new L.LayerGroup(),
+        Hurricanes: new L.LayerGroup(),
+        Floods: new L.LayerGroup(),
+        Ice: new L.LayerGroup(),
+        Landslides: new L.LayerGroup(),
+        Tsunamis: new L.LayerGroup()
     };
 
     for (var x=0; x < disasters.length; x++) {
-        console.log(disasters[x])
         if (disasters[x].type === "Fire") {
             disasterType = "Fires"
             var newMarker = L.marker([disasters[x].lat, disasters[x].lon]);
@@ -67,6 +77,36 @@ function createMarkers(disasters) {
         }
         else if (disasters[x].type === "Tornado") {
             disasterType = "Tornadoes"
+            var newMarker = L.marker([disasters[x].lat, disasters[x].lon]);
+            newMarker.addTo(layers[disasterType]);
+        }
+        else if (disasters[x].type === "Earthquake") {
+            disasterType = "Earthquakes"
+            var newMarker = L.marker([disasters[x].lat, disasters[x].lon]);
+            newMarker.addTo(layers[disasterType]);
+        }
+        else if (disasters[x].type === "Hurricane") {
+            disasterType = "Hurricanes"
+            var newMarker = L.marker([disasters[x].lat, disasters[x].lon]);
+            newMarker.addTo(layers[disasterType]);
+        }
+        else if (disasters[x].type === "Flood") {
+            disasterType = "Floods"
+            var newMarker = L.marker([disasters[x].lat, disasters[x].lon]);
+            newMarker.addTo(layers[disasterType]);
+        }
+        else if (disasters[x].type === "Severe Ice Storm") {
+            disasterType = "Ice"
+            var newMarker = L.marker([disasters[x].lat, disasters[x].lon]);
+            newMarker.addTo(layers[disasterType]);
+        }
+        else if (disasters[x].type === "Mud/Landslide") {
+            disasterType = "Landslides"
+            var newMarker = L.marker([disasters[x].lat, disasters[x].lon]);
+            newMarker.addTo(layers[disasterType]);
+        }
+        else if (disasters[x].type === "Tsunami") {
+            disasterType = "Tsunamis"
             var newMarker = L.marker([disasters[x].lat, disasters[x].lon]);
             newMarker.addTo(layers[disasterType]);
         }
