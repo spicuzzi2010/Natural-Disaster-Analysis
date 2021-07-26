@@ -1,5 +1,7 @@
+DROP TABLE IF EXISTS disaster CASCADE;
+
 CREATE TABLE disaster(
-    id SERIAL Primary Key,
+    id BIG INT NOT NULL,
     county VARCHAR,
     state VARCHAR,
 	lat FLOAT,
@@ -10,4 +12,5 @@ CREATE TABLE disaster(
     declarationtitle VARCHAR
 );
 
-SELECT * FROM disaster;
+ALTER TABLE disaster
+ADD PRIMARY KEY (id);
