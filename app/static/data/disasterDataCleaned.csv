@@ -1,4 +1,4 @@
-,county,state,lat,lon,year,date,disastertype,declarationtitle
+id,county,state,lat,lon,year,date,disastertype,declarationtitle
 0,Wayne County,MI,42.2682408,-83.2844172,2021,2021-07-15,Severe Storms,"SEVERE STORMS,  FLOODING,  AND TORNADOES"
 1,Washtenaw County,MI,42.2582044,-83.8440853,2021,2021-07-15,Severe Storms,"SEVERE STORMS,  FLOODING,  AND TORNADOES"
 2,Statewide,WA,38.8949924,-77.0365581,2021,2021-07-14,Fire,RED APPLE FIRE
