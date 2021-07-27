@@ -1,5 +1,5 @@
 import os
-from config import password
+#from config import password
 import pandas as pd
 from sqlalchemy import create_engine
 

@@ -2,10 +2,11 @@ import models
 from flask import Flask, render_template, jsonify
 from flask_sqlalchemy import SQLAlchemy
 import os
-from config import password
+#from config import password
 
 app = Flask(__name__, template_folder='templates')
-app.config['SQLALCHEMY_DATABASE_URI'] = f"postgresql://postgres:{password}@localhost:5432/natural_disasters"
+#app.config['SQLALCHEMY_DATABASE_URI'] = f"postgresql://postgres:{password}@localhost:5432/natural_disasters"
+app.config['SQLALCHEMY_DATABASE_URI'] = (os.environ.get('postgres://ywjxxscuyxrcas:003c648a175bead70287d791141cbf17bac01700754741e00139ca5077763b48@ec2-52-6-211-59.compute-1.amazonaws.com:5432/d2ivkgcvcv63v2').replace('postgres://', 'postgresql://', 1))
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
