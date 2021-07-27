@@ -13,11 +13,11 @@ SOURCE_SQL = f"SELECT * FROM {TABLE_NAME};"
 
 # (https://help.heroku.com/ZKNTJQSK/
 # why-is-sqlalchemy-1-4-x-not-connecting-to-heroku-postgres)
-TARGET_DATABASE_URL = f"postgresql://postgres:{password}@localhost:5432/natural_disasters"
-    
-    #os.environ.get('DATABASE_URL')
-    #.replace('postgres://', 'postgresql://', 1)
-    #)
+#TARGET_DATABASE_URL = f"postgresql://postgres:{password}@localhost:5432/natural_disasters"
+TARGET_DATABASE_URL = (
+    os.environ.get('postgres://ywjxxscuyxrcas:003c648a175bead70287d791141cbf17bac01700754741e00139ca5077763b48@ec2-52-6-211-59.compute-1.amazonaws.com:5432/d2ivkgcvcv63v2')
+    .replace('postgres://', 'postgresql://', 1)
+    )
 
 
 # Read source data
