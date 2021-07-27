@@ -1,8 +1,8 @@
-import models
 from flask import Flask, render_template, jsonify
 from flask_sqlalchemy import SQLAlchemy
 import os
 #from config import password
+import models
 
 app = Flask(__name__, template_folder='templates')
 #app.config['SQLALCHEMY_DATABASE_URI'] = f"postgresql://postgres:{password}@localhost:5432/natural_disasters"
@@ -10,9 +10,12 @@ app.config['SQLALCHEMY_DATABASE_URI'] = (os.environ.get('DATABASE_URL').replace(
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
+
+
 @app.route("/")
 def home():
     return render_template("index.html")
+
 
 @app.route("/api/disasters")
 def disaster():
