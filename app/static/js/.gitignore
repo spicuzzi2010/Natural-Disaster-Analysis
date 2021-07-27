@@ -9,6 +9,8 @@
 config.js
 config.py
 
+env.sh
+
 # BlueJ files
 *.ctxt
 
