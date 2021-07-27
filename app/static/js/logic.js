@@ -6,9 +6,6 @@ function createMap(layers) {
         accessToken: API_KEY
     });
 
-    // Initialize all of the LayerGroups we'll be using
-
-
     // Create the map with our layers
     var myMap = L.map("map-id", {
         center: [39.82, -98.57],
@@ -50,10 +47,14 @@ function createMap(layers) {
     // Add the info legend to the map
     info.addTo(myMap);
 
-    // Wrap every letter in a span
-    var textWrapper = document.querySelector('.ml3');
-    textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+};
 
+function statePoints(disasters) {
+    var disasterType;
+    var allStates = [];
+    disasters.forEach(report => allStates.push(report.state));
+    var states = [...new Set(allStates)];
+    console.log(states)
 };
 
 function createMarkers(disasters) {
@@ -121,6 +122,11 @@ function createMarkers(disasters) {
 
 const url = "/api/disasters"
 d3.json(url).then(createMarkers);
+d3.json(url).then(statePoints);
+
+// Wrap every letter in a span
+var textWrapper = document.querySelector('.ml3');
+textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
 
 anime.timeline({ loop: true })
     .add({
