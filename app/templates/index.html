@@ -14,18 +14,34 @@
 </head>
 
 <body>
-    <h1 class="ml3">Natural disaster Tracker</h1>
+    <div class="container">
+    <h1 class="ml3">Natural Disaster Tracker</h1>
     <p>Some datasets may take a few moments to load.</p>
+    </div>
     <div id="map-id"></div>
+    <br>
+    <h3 class="text-center">Which state is the most dangerous?</h3>
+    <p class="text-center">
+        Each state is given a point if a registered disaster occurred in that state. The results are listed in the table below.
+    </p>
+    <div class="container">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
     <table class="table table-dark table-striped table-hover">
             <thead>
                 <tr>
+                    <td>Rank</td>
                     <td>State</td>
                     <td>Disaster Points</td>
                 </tr>
             </thead>
             <tbody></tbody>
     </table>
+</div>
+    <div class="col-md-4"></div>
+</div>
+</div>
 
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
