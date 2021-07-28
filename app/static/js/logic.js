@@ -51,10 +51,30 @@ function createMap(layers) {
 
 function statePoints(disasters) {
     var disasterType;
+    var statePoints = {};
     var allStates = [];
     disasters.forEach(report => allStates.push(report.state));
     var states = [...new Set(allStates)];
     console.log(states)
+
+    for (var x=0; x < states.length; x++) {
+        statePoints[states[x]] = 0;
+    };
+    for (var x=0; x < disasters.length; x++) {
+        statePoints[disasters[x].state]++
+    }
+    entries = Object.entries(statePoints);
+    statePointsSorted = entries.sort((a,b) => b[1] - a[1])
+    console.log(statePointsSorted)
+
+    var tableBody = d3.select("tbody");
+    //d3.selectAll('tr').remove();
+    //for (var [key, value] of Object.entries(statePoints)) {
+    for (var i=0; i < statePointsSorted.length; i++) {
+        var row = tableBody.append('tr');
+        row.append('td').text(statePointsSorted[i][0]);
+        row.append('td').text(statePointsSorted[i][1]);
+    };
 };
 
 function createMarkers(disasters) {
