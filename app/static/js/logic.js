@@ -6,9 +6,6 @@ function createMap(layers) {
         accessToken: API_KEY
     });
 
-    // Initialize all of the LayerGroups we'll be using
-
-
     // Create the map with our layers
     var myMap = L.map("map-id", {
         center: [39.82, -98.57],
@@ -50,10 +47,34 @@ function createMap(layers) {
     // Add the info legend to the map
     info.addTo(myMap);
 
-    // Wrap every letter in a span
-    var textWrapper = document.querySelector('.ml3');
-    textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+};
 
+function statePoints(disasters) {
+    var disasterType;
+    var statePoints = {};
+    var allStates = [];
+    disasters.forEach(report => allStates.push(report.state));
+    var states = [...new Set(allStates)];
+    console.log(states)
+
+    for (var x=0; x < states.length; x++) {
+        statePoints[states[x]] = 0;
+    };
+    for (var x=0; x < disasters.length; x++) {
+        statePoints[disasters[x].state]++
+    }
+    entries = Object.entries(statePoints);
+    statePointsSorted = entries.sort((a,b) => b[1] - a[1])
+    console.log(statePointsSorted)
+
+    var tableBody = d3.select("tbody");
+    //d3.selectAll('tr').remove();
+    //for (var [key, value] of Object.entries(statePoints)) {
+    for (var i=0; i < statePointsSorted.length; i++) {
+        var row = tableBody.append('tr');
+        row.append('td').text(statePointsSorted[i][0]);
+        row.append('td').text(statePointsSorted[i][1]);
+    };
 };
 
 function createMarkers(disasters) {
@@ -121,6 +142,11 @@ function createMarkers(disasters) {
 
 const url = "/api/disasters"
 d3.json(url).then(createMarkers);
+d3.json(url).then(statePoints);
+
+// Wrap every letter in a span
+var textWrapper = document.querySelector('.ml3');
+textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
 
 anime.timeline({ loop: true })
     .add({
