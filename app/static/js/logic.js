@@ -173,9 +173,6 @@ function runData(disasters) {
     statePoints(disasters)
 };
 
-var updateButton = d3.select("#update-button");
-updateButton.on("click", d3.json(url).then(statePoints));
-
 const url = "/api/disasters"
 d3.json(url).then(runData);
 
@@ -199,3 +196,6 @@ anime.timeline({ loop: true })
         easing: "easeOutExpo",
         delay: 10
     });
+
+var updateButton = d3.select("#update-button");
+updateButton.on("click", d3.json(url).then(statePoints));
