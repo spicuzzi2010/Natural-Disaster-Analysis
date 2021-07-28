@@ -1,4 +1,4 @@
-from app import db
+from .app import db
 
 class Disaster(db.Model):
     __tablename__ = 'disaster'

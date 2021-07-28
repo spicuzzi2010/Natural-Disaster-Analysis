@@ -1,8 +1,8 @@
 from flask import Flask, render_template, jsonify
 from flask_sqlalchemy import SQLAlchemy
 import os
-#from config import password
-import models
+# from config import password
+
 
 app = Flask(__name__, template_folder='templates')
 #app.config['SQLALCHEMY_DATABASE_URI'] = f"postgresql://postgres:{password}@localhost:5432/natural_disasters"
@@ -10,7 +10,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = (os.environ.get('DATABASE_URL').replace(
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-
+from .models import Disaster
 
 @app.route("/")
 def home():
@@ -19,15 +19,15 @@ def home():
 
 @app.route("/api/disasters")
 def disaster():
-    results = db.session.query(models.Disaster.id,
-                                    models.Disaster.county,
-                                    models.Disaster.state, 
-                                    models.Disaster.lat, 
-                                    models.Disaster.lon, 
-                                    models.Disaster.year, 
-                                    models.Disaster.date,
-                                    models.Disaster.disastertype,
-                                    models.Disaster.declarationtitle).all()
+    results = db.session.query(Disaster.id,
+                                    Disaster.county,
+                                    Disaster.state, 
+                                    Disaster.lat, 
+                                    Disaster.lon, 
+                                    Disaster.year, 
+                                    Disaster.date,
+                                    Disaster.disastertype,
+                                    Disaster.declarationtitle).all()
     
     id = [result[0] for result in results]
     county = [result[1] for result in results]
