@@ -72,12 +72,13 @@ function statePoints(disasters) {
     //for (var [key, value] of Object.entries(statePoints)) {
     for (var i=0; i < statePointsSorted.length; i++) {
         var row = tableBody.append('tr');
+        row.append('td').text(i + 1);
         row.append('td').text(statePointsSorted[i][0]);
         row.append('td').text(statePointsSorted[i][1]);
     };
 };
 
-function createMarkers(disasters) {
+function runData(disasters) {
     var disasterType;
     var layers = {
         Earthquakes: new L.LayerGroup(),
@@ -138,11 +139,11 @@ function createMarkers(disasters) {
     }
     console.log(layers)
     createMap(layers)
+    statePoints(disasters)
 };
 
 const url = "/api/disasters"
-d3.json(url).then(createMarkers);
-d3.json(url).then(statePoints);
+d3.json(url).then(runData);
 
 // Wrap every letter in a span
 var textWrapper = document.querySelector('.ml3');
@@ -156,7 +157,7 @@ anime.timeline({ loop: true })
 
             "easeInOutQuad",
         duration: 2250,
-        delay: (el, i) => 500 * (i + 1)
+        delay: (el, i) => 100 * (i + 1)
     }).add({
         targets: '.ml3',
         opacity: 100,
