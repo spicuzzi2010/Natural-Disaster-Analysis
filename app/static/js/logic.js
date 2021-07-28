@@ -60,14 +60,14 @@ function statePoints(disasters) {
         statePoints[states[x]] = 0;
     };
 
-    var earthquakePoints = d3.select("#earthquake-select").property("value");
-    var tornadoPoints = d3.select('#tornado-select').property("value");
-    var firePoints = d3.select('#fire-select').property("value");
-    var hurricanePoints = d3.select('#hurricane-select').property("value");
-    var floodPoints = d3.select('#flood-select').property("value");
-    var icePoints = d3.select('#ice-select').property("value");
-    var landslidePoints = d3.select('#landslide-select').property("value");
-    var tsunamiPoints = d3.select('#tsunami-select').property("value");
+    var earthquakePoints = parseInt(d3.select("#earthquake-select").property("value"));
+    var tornadoPoints = parseInt(d3.select('#tornado-select').property("value"));
+    var firePoints = parseInt(d3.select('#fire-select').property("value"));
+    var hurricanePoints = parseInt(d3.select('#hurricane-select').property("value"));
+    var floodPoints = parseInt(d3.select('#flood-select').property("value"));
+    var icePoints = parseInt(d3.select('#ice-select').property("value"));
+    var landslidePoints = parseInt(d3.select('#landslide-select').property("value"));
+    var tsunamiPoints = parseInt(d3.select('#tsunami-select').property("value"));
 
     for (var x=0; x < disasters.length; x++) {
         if (disasters[x].type === "Earthquake") {
