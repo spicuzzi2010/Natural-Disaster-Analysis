@@ -31,7 +31,7 @@ function createMap(layers) {
     };
 
     // Create a control for our layers, add our overlay layers to it
-    L.control.layers(null, overlays).addTo(myMap);
+    L.control.layers(null, overlays, {collapsed:false}).addTo(myMap);
 
 
     var info = L.control({
@@ -50,26 +50,57 @@ function createMap(layers) {
 };
 
 function statePoints(disasters) {
-    var disasterType;
+    //d3.selectAll('tr').remove();
     var statePoints = {};
     var allStates = [];
     disasters.forEach(report => allStates.push(report.state));
     var states = [...new Set(allStates)];
-    console.log(states)
 
     for (var x=0; x < states.length; x++) {
         statePoints[states[x]] = 0;
     };
+
+    var earthquakePoints = d3.select("#earthquake-select").property("value");
+    var tornadoPoints = d3.select('#tornado-select').property("value");
+    var firePoints = d3.select('#fire-select').property("value");
+    var hurricanePoints = d3.select('#hurricane-select').property("value");
+    var floodPoints = d3.select('#flood-select').property("value");
+    var icePoints = d3.select('#ice-select').property("value");
+    var landslidePoints = d3.select('#landslide-select').property("value");
+    var tsunamiPoints = d3.select('#tsunami-select').property("value");
+
     for (var x=0; x < disasters.length; x++) {
-        statePoints[disasters[x].state]++
-    }
+        if (disasters[x].type === "Earthquake") {
+            statePoints[disasters[x].state] = statePoints[disasters[x].state] + earthquakePoints
+        }
+        else if (disasters[x].type === "Tornado") {
+            statePoints[disasters[x].state] = statePoints[disasters[x].state] + tornadoPoints
+        }
+        else if (disasters[x].type === "Fire") {
+            statePoints[disasters[x].state] = statePoints[disasters[x].state] + firePoints
+        }
+        else if (disasters[x].type === "Hurricane") {
+            statePoints[disasters[x].state] = statePoints[disasters[x].state] + hurricanePoints
+        }
+        else if (disasters[x].type === "Flood") {
+            statePoints[disasters[x].state] = statePoints[disasters[x].state] + floodPoints
+        }
+        else if (disasters[x].type === "Severe Ice Storm") {
+            statePoints[disasters[x].state] = statePoints[disasters[x].state] + icePoints
+        }
+        else if (disasters[x].type === "Mud/Landslide") {
+            statePoints[disasters[x].state] = statePoints[disasters[x].state] + landslidePoints
+        }
+        else if (disasters[x].type === "Tsunami") {
+            statePoints[disasters[x].state] = statePoints[disasters[x].state] + tsunamiPoints
+        }
+    };
+
     entries = Object.entries(statePoints);
     statePointsSorted = entries.sort((a,b) => b[1] - a[1])
     console.log(statePointsSorted)
 
     var tableBody = d3.select("tbody");
-    //d3.selectAll('tr').remove();
-    //for (var [key, value] of Object.entries(statePoints)) {
     for (var i=0; i < statePointsSorted.length; i++) {
         var row = tableBody.append('tr');
         row.append('td').text(i + 1);
@@ -141,6 +172,9 @@ function runData(disasters) {
     createMap(layers)
     statePoints(disasters)
 };
+
+var updateButton = d3.select("#update-button");
+filterButton.on("click", d3.json(url).then(statePoints));
 
 const url = "/api/disasters"
 d3.json(url).then(runData);

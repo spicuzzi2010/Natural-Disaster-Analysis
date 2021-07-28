@@ -31,15 +31,98 @@
     <table class="table table-dark table-striped table-hover">
             <thead>
                 <tr>
-                    <td>Rank</td>
-                    <td>State</td>
-                    <td>Disaster Points</td>
+                    <th>Rank</th>
+                    <th>State</th>
+                    <th>Disaster Points</th>
                 </tr>
             </thead>
             <tbody></tbody>
     </table>
 </div>
-    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <p>Choose your own point values for each disaster type.</p>
+            <p><b>Earthquakes:</b></p>
+            <select class="form-select" id="earthquake-select">
+                <option>0</option>
+                <option selected>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+            <br>
+            <select class="form-select" id="tornado-select">
+                <p><b>Tornadoes:</b></p>
+                <option>0</option>
+                <option selected>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+            <br>
+            <select class="form-select" id="fire-select">
+                <p><b>Wildfires:</b></p>
+                <option>0</option>
+                <option selected>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+            <br>
+            <select class="form-select" id="hurricane-select">
+                <p><b>Hurricanes:</b></p>
+                <option>0</option>
+                <option selected>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+            <br>
+            <select class="form-select" id="flood-select">
+                <p><b>Floods:</b></p>
+                <option>0</option>
+                <option selected>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+            <br>
+            <select class="form-select" id="ice-select">
+                <p><b>Severe Ice Storms:</b></p>
+                <option>0</option>
+                <option selected>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+            <br>
+            <select class="form-select" id="landslide-select">
+                <p><b>Mud/Landslides:</b></p>
+                <option>0</option>
+                <option selected>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+            <br>
+            <select class="form-select" id="tsunami-select">
+                <p><b>Tsunamis:</b></p>
+                <option>0</option>
+                <option selected>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+            <button type="button" class="btn btn-dark" id="update-button">Update</button>
+            <br>
+    </div>
 </div>
 </div>
 
