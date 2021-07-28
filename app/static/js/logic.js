@@ -170,7 +170,7 @@ function runData(disasters) {
     }
     console.log(layers)
     createMap(layers)
-    statePoints(disasterData)
+    statePoints(disasters)
 };
 
 const url = "/api/disasters";
@@ -198,5 +198,5 @@ anime.timeline({ loop: true })
     });
 
 var updateButton = d3.select("#update-button");
-updateButton.on("click", d3.json(url).then(statePoints));
+updateButton.on("click", function(){d3.json(url).then(statePoints)});
 
