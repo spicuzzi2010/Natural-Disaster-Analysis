@@ -170,11 +170,10 @@ function runData(disasters) {
     }
     console.log(layers)
     createMap(layers)
-    statePoints(disasters)
+    statePoints(disasterData)
 };
 
-const url = "/api/disasters"
-d3.json(url).then(runData);
+runData(disasterData)
 
 // Wrap every letter in a span
 var textWrapper = document.querySelector('.ml3');
@@ -198,4 +197,4 @@ anime.timeline({ loop: true })
     });
 
 var updateButton = d3.select("#update-button");
-updateButton.on("click", function(){d3.json(url).then(statePoints)});
+updateButton.on("click", statePoints(disasterData));
