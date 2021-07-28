@@ -71,28 +71,28 @@ function statePoints(disasters) {
 
     for (var x=0; x < disasters.length; x++) {
         if (disasters[x].type === "Earthquake") {
-            statePoints[disasters[x].state] = earthquakePoints++
+            statePoints[disasters[x].state] += earthquakePoints
         }
         else if (disasters[x].type === "Tornado") {
-            statePoints[disasters[x].state] = tornadoPoints++
+            statePoints[disasters[x].state] += tornadoPoints
         }
         else if (disasters[x].type === "Fire") {
-            statePoints[disasters[x].state] = firePoints++
+            statePoints[disasters[x].state] += firePoints
         }
         else if (disasters[x].type === "Hurricane") {
-            statePoints[disasters[x].state] = hurricanePoints++
+            statePoints[disasters[x].state] += hurricanePoints
         }
         else if (disasters[x].type === "Flood") {
-            statePoints[disasters[x].state] = floodPoints++
+            statePoints[disasters[x].state] += floodPoints
         }
         else if (disasters[x].type === "Severe Ice Storm") {
-            statePoints[disasters[x].state] = icePoints++
+            statePoints[disasters[x].state] += icePoints
         }
         else if (disasters[x].type === "Mud/Landslide") {
-            statePoints[disasters[x].state] = landslidePoints++
+            statePoints[disasters[x].state] += landslidePoints
         }
         else if (disasters[x].type === "Tsunami") {
-            statePoints[disasters[x].state] = tsunamiPoints++
+            statePoints[disasters[x].state] += tsunamiPoints
         }
     };
 
