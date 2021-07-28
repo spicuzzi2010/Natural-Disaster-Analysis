@@ -107,6 +107,13 @@ function statePoints(disasters) {
         row.append('td').text(statePointsSorted[i][0]);
         row.append('td').text(statePointsSorted[i][1]);
     };
+
+    gridjs.Grid({
+        columns: ["Rank", "State", "Disaster Points"],
+        data: [
+          statePointsSorted
+        ]
+      }).render(document.getElementById("wrapper"));
 };
 
 function runData(disasters) {
