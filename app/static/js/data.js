@@ -1,3 +1,4 @@
 const url = "/api/disasters";
-d3.json(url).then(data => disasterData = data);
+function saveData(data) {disasterData = data};
+d3.json(url).then(saveData);
 console.log(disasterData);
