@@ -50,7 +50,7 @@ function createMap(layers) {
 };
 
 function statePoints(disasters) {
-    //d3.selectAll('tr').remove();
+    d3.selectAll('td').remove();
     var statePoints = {};
     var allStates = [];
     disasters.forEach(report => allStates.push(report.state));
