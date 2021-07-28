@@ -174,7 +174,7 @@ function runData(disasters) {
 };
 
 var updateButton = d3.select("#update-button");
-filterButton.on("click", d3.json(url).then(statePoints));
+updateButton.on("click", d3.json(url).then(statePoints));
 
 const url = "/api/disasters"
 d3.json(url).then(runData);
