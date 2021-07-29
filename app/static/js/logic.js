@@ -109,12 +109,7 @@ function statePoints(disasters) {
     };
 };
 
-gridjs.Grid({
-    columns: ["Rank", "State", "Disaster Points"],
-    data: [
-      ["MI", 1, 15]
-    ]
-  }).render(document.getElementById("wrapper"));
+
 
 function runData(disasters) {
     var disasterType;
