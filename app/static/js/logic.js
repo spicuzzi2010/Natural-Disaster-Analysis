@@ -132,7 +132,9 @@ function runData(disasters) {
     for (var x=0; x < disasters.length; x++) {
         if (disasters[x].type === "Fire") {
             disasterType = "Fires"
-            var newMarker = L.marker([disasters[x].lat, disasters[x].lon]);
+            var newMarker = L.marker([disasters[x].lat, disasters[x].lon])
+            .bindPopup("<h3>Location: " + disasters[x].county + ", " + disasters[x].state + 
+            "<h3><h3>Date: " + disasters[x].date + "<h3><h3>Title: " + disasters[x].declarationtitle + "</h3>");
             newMarker.addTo(layers[disasterType]);
         }
         else if (disasters[x].type === "Tornado") {
