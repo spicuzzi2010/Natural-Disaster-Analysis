@@ -132,50 +132,64 @@ function runData(disasters) {
     for (var x=0; x < disasters.length; x++) {
         if (disasters[x].type === "Fire") {
             disasterType = "Fires"
-            var newMarker = L.marker([disasters[x].lat, disasters[x].lon]);
+            var newMarker = L.marker([disasters[x].lat, disasters[x].lon])
+            .bindPopup("<h3>Location: " + disasters[x].county + ", " + disasters[x].state + 
+            "<h3><h3>Date: " + disasters[x].date + "<h3><h3>Title: " + disasters[x].title + "</h3>");
             newMarker.addTo(layers[disasterType]);
         }
         else if (disasters[x].type === "Tornado") {
             disasterType = "Tornadoes"
-            var newMarker = L.marker([disasters[x].lat, disasters[x].lon]);
+            var newMarker = L.marker([disasters[x].lat, disasters[x].lon])
+            .bindPopup("<h3>Location: " + disasters[x].county + ", " + disasters[x].state + 
+            "<h3><h3>Date: " + disasters[x].date + "<h3><h3>Title: " + disasters[x].title + "</h3>");
             newMarker.addTo(layers[disasterType]);
         }
         else if (disasters[x].type === "Earthquake") {
             disasterType = "Earthquakes"
-            var newMarker = L.marker([disasters[x].lat, disasters[x].lon]);
+            var newMarker = L.marker([disasters[x].lat, disasters[x].lon])
+            .bindPopup("<h3>Location: " + disasters[x].county + ", " + disasters[x].state + 
+            "<h3><h3>Date: " + disasters[x].date + "<h3><h3>Title: " + disasters[x].title + "</h3>");
             newMarker.addTo(layers[disasterType]);
         }
         else if (disasters[x].type === "Hurricane") {
             disasterType = "Hurricanes"
-            var newMarker = L.marker([disasters[x].lat, disasters[x].lon]);
+            var newMarker = L.marker([disasters[x].lat, disasters[x].lon])
+            .bindPopup("<h3>Location: " + disasters[x].county + ", " + disasters[x].state + 
+            "<h3><h3>Date: " + disasters[x].date + "<h3><h3>Title: " + disasters[x].title + "</h3>");
             newMarker.addTo(layers[disasterType]);
         }
         else if (disasters[x].type === "Flood") {
             disasterType = "Floods"
-            var newMarker = L.marker([disasters[x].lat, disasters[x].lon]);
+            var newMarker = L.marker([disasters[x].lat, disasters[x].lon])
+            .bindPopup("<h3>Location: " + disasters[x].county + ", " + disasters[x].state + 
+            "<h3><h3>Date: " + disasters[x].date + "<h3><h3>Title: " + disasters[x].title + "</h3>");
             newMarker.addTo(layers[disasterType]);
         }
         else if (disasters[x].type === "Severe Ice Storm") {
             disasterType = "Ice"
-            var newMarker = L.marker([disasters[x].lat, disasters[x].lon]);
+            var newMarker = L.marker([disasters[x].lat, disasters[x].lon])
+            .bindPopup("<h3>Location: " + disasters[x].county + ", " + disasters[x].state + 
+            "<h3><h3>Date: " + disasters[x].date + "<h3><h3>Title: " + disasters[x].title + "</h3>");
             newMarker.addTo(layers[disasterType]);
         }
         else if (disasters[x].type === "Mud/Landslide") {
             disasterType = "Landslides"
-            var newMarker = L.marker([disasters[x].lat, disasters[x].lon]);
+            var newMarker = L.marker([disasters[x].lat, disasters[x].lon])
+            .bindPopup("<h3>Location: " + disasters[x].county + ", " + disasters[x].state + 
+            "<h3><h3>Date: " + disasters[x].date + "<h3><h3>Title: " + disasters[x].title + "</h3>");
             newMarker.addTo(layers[disasterType]);
         }
         else if (disasters[x].type === "Tsunami") {
             disasterType = "Tsunamis"
-            var newMarker = L.marker([disasters[x].lat, disasters[x].lon]);
+            var newMarker = L.marker([disasters[x].lat, disasters[x].lon])
+            .bindPopup("<h3>Location: " + disasters[x].county + ", " + disasters[x].state + 
+            "<h3><h3>Date: " + disasters[x].date + "<h3><h3>Title: " + disasters[x].title + "</h3>");
             newMarker.addTo(layers[disasterType]);
         }
         else {
             disasterType = "Other"
         }
-
-        newMarker.bindPopup("<h3>Location: " + disasters[x].county + ", " + disasters[x].state + 
-        "<h3><h3>Date: " + disasters[x].date + "<h3><h3>Title: " + disasters[x].title + "</h3>");
+        
     }
     console.log(layers)
     createMap(layers)
