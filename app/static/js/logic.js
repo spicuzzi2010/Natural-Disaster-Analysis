@@ -111,7 +111,7 @@ function statePoints(disasters) {
     gridjs.Grid({
         columns: ["Rank", "State", "Disaster Points"],
         data: [
-          statePointsSorted
+          ["MI", 1, 15]
         ]
       }).render(document.getElementById("wrapper"));
 };
