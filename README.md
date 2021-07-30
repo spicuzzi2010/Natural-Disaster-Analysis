@@ -6,7 +6,7 @@ For this project Team One decided to look into the most dangerous place to live 
 Presentation Link https://docs.google.com/presentation/d/1hf62hA5lI5pDgIPthLenRxxkLpOZf36w3VvTkHR4zUw/edit#slide=id.ge726d615ea_0_0 and created website https://natural-disaster-analysis.herokuapp.com/
 
 ## ETL
-A FEMA-declared disaster dataset with over 21,000 records was used as our primary source. Coordinates (lat, lon) for each disaster record was retrieved with GeoPy. This updated dataset was then cleaned and loaded to a PostgreSQL database.
+A FEMA-declared disaster dataset with over 21,000 records since 2010 was used as our primary source. Coordinates (lat, lon) for each disaster record was retrieved with functio created using GeoPy. This updated dataset was then cleaned and loaded to a PostgreSQL database that can run multiple times in succession and will replace current values if they exist.
 
 ## Flask
 A Flask application is used to select data from the database and generate a JSON file to be called through our API. Each disaster record has a unique ID and includes data for date, year, state, county, latitude, longitude, disaster type, and disaster description.
