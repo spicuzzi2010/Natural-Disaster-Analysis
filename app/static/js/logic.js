@@ -5,6 +5,12 @@ function createMap(layers) {
         id: "light-v10",
         accessToken: "pk.eyJ1Ijoic3BpY3V6emkxMCIsImEiOiJja3F2aHVibmkwZXAxMzFwYWR5ZTZxdXY3In0.PUDqObIlPwooM7Ld80ZNVg"
     });
+    var darkmap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
+        attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
+        maxZoom: 18,
+        id: "dark-v10",
+        accessToken: "pk.eyJ1Ijoic3BpY3V6emkxMCIsImEiOiJja3F2aHVibmkwZXAxMzFwYWR5ZTZxdXY3In0.PUDqObIlPwooM7Ld80ZNVg"
+    });
 
     // Create the map with our layers
     var myMap = L.map("map-id", {
@@ -15,8 +21,10 @@ function createMap(layers) {
         ]
     });
 
-    // Add our 'lightmap' tile layer to the map
-    lightmap.addTo(myMap);
+    var baseMaps = {
+        'Light':lightmap,
+        'Dark':darkmap
+    }
 
     // Create an overlays object to add to the layer control
     var overlays = {
