@@ -17,6 +17,7 @@ function createMap(layers) {
         center: [39.82, -98.57],
         zoom: 5,
         layers: [
+            lightmap,
             layers.Earthquakes
         ]
     });
@@ -39,7 +40,7 @@ function createMap(layers) {
     };
 
     // Create a control for our layers, add our overlay layers to it
-    L.control.layers(null, overlays, {collapsed:false}).addTo(myMap);
+    L.control.layers(baseMaps, overlays, {collapsed:false}).addTo(myMap);
 
 
     var info = L.control({
