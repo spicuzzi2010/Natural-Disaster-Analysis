@@ -3,17 +3,12 @@ import os
 import pandas as pd
 from sqlalchemy import create_engine
 
-# Use one or the other:
 SOURCE_PATH = 'app/static/data/disasterDataCleaned.csv'
-# SOURCE_PATH = 'sqlite:///etl/pets.sqlite'
 
 TABLE_NAME = 'disaster'
 INDEX_COLUMN = 'id'
 SOURCE_SQL = f"SELECT * FROM {TABLE_NAME};"
 
-# (https://help.heroku.com/ZKNTJQSK/
-# why-is-sqlalchemy-1-4-x-not-connecting-to-heroku-postgres)
-#TARGET_DATABASE_URL = f"postgresql://postgres:{password}@localhost:5432/natural_disasters"
 TARGET_DATABASE_URL = (
     os.environ.get('DATABASE_URL')
     .replace('postgres://', 'postgresql://', 1)
@@ -30,12 +25,9 @@ def read_source(source_path):
 
     elif source_path.lower().endswith('csv'):
         source_df = pd.read_csv(source_path)
-
     else:
         raise TypeError("Unsupported file format")
-
     return source_df
-
 
 # Create the table
 def write_target(source_df):
