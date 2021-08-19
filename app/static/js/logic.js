@@ -5,18 +5,34 @@ function createMap(layers) {
         id: "light-v10",
         accessToken: "pk.eyJ1Ijoic3BpY3V6emkxMCIsImEiOiJja3F2aHVibmkwZXAxMzFwYWR5ZTZxdXY3In0.PUDqObIlPwooM7Ld80ZNVg"
     });
+    var darkmap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
+        attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
+        maxZoom: 18,
+        id: "dark-v10",
+        accessToken: "pk.eyJ1Ijoic3BpY3V6emkxMCIsImEiOiJja3F2aHVibmkwZXAxMzFwYWR5ZTZxdXY3In0.PUDqObIlPwooM7Ld80ZNVg"
+    });
+    var streetmap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
+        attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
+        maxZoom: 18,
+        id: "streets-v11",
+        accessToken: "pk.eyJ1Ijoic3BpY3V6emkxMCIsImEiOiJja3F2aHVibmkwZXAxMzFwYWR5ZTZxdXY3In0.PUDqObIlPwooM7Ld80ZNVg"
+    });
 
     // Create the map with our layers
     var myMap = L.map("map-id", {
         center: [39.82, -98.57],
         zoom: 5,
         layers: [
+            lightmap,
             layers.Earthquakes
         ]
     });
 
-    // Add our 'lightmap' tile layer to the map
-    lightmap.addTo(myMap);
+    var baseMaps = {
+        'Light':lightmap,
+        'Dark':darkmap,
+        'Streets':streetmap
+    }
 
     // Create an overlays object to add to the layer control
     var overlays = {
@@ -31,7 +47,7 @@ function createMap(layers) {
     };
 
     // Create a control for our layers, add our overlay layers to it
-    L.control.layers(null, overlays, {collapsed:false}).addTo(myMap);
+    L.control.layers(baseMaps, overlays, {collapsed:false}).addTo(myMap);
 
 
     var info = L.control({
