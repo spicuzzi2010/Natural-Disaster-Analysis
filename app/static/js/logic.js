@@ -29,9 +29,9 @@ function createMap(layers) {
     });
 
     var baseMaps = {
-        'Light':lightmap,
-        'Dark':darkmap,
-        'Streets':streetmap
+        'Light': lightmap,
+        'Dark': darkmap,
+        'Streets': streetmap
     }
 
     // Create an overlays object to add to the layer control
@@ -47,7 +47,7 @@ function createMap(layers) {
     };
 
     // Create a control for our layers, add our overlay layers to it
-    L.control.layers(baseMaps, overlays, {collapsed:false}).addTo(myMap);
+    L.control.layers(baseMaps, overlays, { collapsed: false }).addTo(myMap);
 
 
     var info = L.control({
@@ -72,7 +72,7 @@ function statePoints(disasters) {
     disasters.forEach(report => allStates.push(report.state));
     var states = [...new Set(allStates)];
 
-    for (var x=0; x < states.length; x++) {
+    for (var x = 0; x < states.length; x++) {
         statePoints[states[x]] = 0;
     };
 
@@ -85,7 +85,7 @@ function statePoints(disasters) {
     var landslidePoints = parseInt(d3.select('#landslide-select').property("value"));
     var tsunamiPoints = parseInt(d3.select('#tsunami-select').property("value"));
 
-    for (var x=0; x < disasters.length; x++) {
+    for (var x = 0; x < disasters.length; x++) {
         if (disasters[x].type === "Earthquake") {
             statePoints[disasters[x].state] += earthquakePoints
         }
@@ -113,11 +113,11 @@ function statePoints(disasters) {
     };
 
     entries = Object.entries(statePoints);
-    statePointsSorted = entries.sort((a,b) => b[1] - a[1])
+    statePointsSorted = entries.sort((a, b) => b[1] - a[1])
     console.log(statePointsSorted)
 
     var tableBody = d3.select("tbody");
-    for (var i=0; i < statePointsSorted.length; i++) {
+    for (var i = 0; i < statePointsSorted.length; i++) {
         var row = tableBody.append('tr').classed(`${statePointsSorted[i][0]}`, true);
         row.append('td').text(i + 1);
         row.append('td').text(statePointsSorted[i][0]);
@@ -144,67 +144,67 @@ function runData(disasters) {
         Tsunamis: new L.LayerGroup()
     };
 
-    for (var x=0; x < disasters.length; x++) {
+    for (var x = 0; x < disasters.length; x++) {
         if (disasters[x].type === "Fire") {
             disasterType = "Fires"
             var newMarker = L.marker([disasters[x].lat, disasters[x].lon])
-            .bindPopup("<h3>Location: " + disasters[x].county + ", " + disasters[x].state + 
-            "<h3><h3>Date: " + disasters[x].date + "<h3><h3>Title: " + disasters[x].title + "</h3>");
+                .bindPopup("<h3>Location: " + disasters[x].county + ", " + disasters[x].state +
+                    "<h3><h3>Date: " + disasters[x].date + "<h3><h3>Title: " + disasters[x].title + "</h3>");
             newMarker.addTo(layers[disasterType]);
         }
         else if (disasters[x].type === "Tornado") {
             disasterType = "Tornadoes"
             var newMarker = L.marker([disasters[x].lat, disasters[x].lon])
-            .bindPopup("<h3>Location: " + disasters[x].county + ", " + disasters[x].state + 
-            "<h3><h3>Date: " + disasters[x].date + "<h3><h3>Title: " + disasters[x].title + "</h3>");
+                .bindPopup("<h3>Location: " + disasters[x].county + ", " + disasters[x].state +
+                    "<h3><h3>Date: " + disasters[x].date + "<h3><h3>Title: " + disasters[x].title + "</h3>");
             newMarker.addTo(layers[disasterType]);
         }
         else if (disasters[x].type === "Earthquake") {
             disasterType = "Earthquakes"
             var newMarker = L.marker([disasters[x].lat, disasters[x].lon])
-            .bindPopup("<h3>Location: " + disasters[x].county + ", " + disasters[x].state + 
-            "<h3><h3>Date: " + disasters[x].date + "<h3><h3>Title: " + disasters[x].title + "</h3>");
+                .bindPopup("<h3>Location: " + disasters[x].county + ", " + disasters[x].state +
+                    "<h3><h3>Date: " + disasters[x].date + "<h3><h3>Title: " + disasters[x].title + "</h3>");
             newMarker.addTo(layers[disasterType]);
         }
         else if (disasters[x].type === "Hurricane") {
             disasterType = "Hurricanes"
             var newMarker = L.marker([disasters[x].lat, disasters[x].lon])
-            .bindPopup("<h3>Location: " + disasters[x].county + ", " + disasters[x].state + 
-            "<h3><h3>Date: " + disasters[x].date + "<h3><h3>Title: " + disasters[x].title + "</h3>");
+                .bindPopup("<h3>Location: " + disasters[x].county + ", " + disasters[x].state +
+                    "<h3><h3>Date: " + disasters[x].date + "<h3><h3>Title: " + disasters[x].title + "</h3>");
             newMarker.addTo(layers[disasterType]);
         }
         else if (disasters[x].type === "Flood") {
             disasterType = "Floods"
             var newMarker = L.marker([disasters[x].lat, disasters[x].lon])
-            .bindPopup("<h3>Location: " + disasters[x].county + ", " + disasters[x].state + 
-            "<h3><h3>Date: " + disasters[x].date + "<h3><h3>Title: " + disasters[x].title + "</h3>");
+                .bindPopup("<h3>Location: " + disasters[x].county + ", " + disasters[x].state +
+                    "<h3><h3>Date: " + disasters[x].date + "<h3><h3>Title: " + disasters[x].title + "</h3>");
             newMarker.addTo(layers[disasterType]);
         }
         else if (disasters[x].type === "Severe Ice Storm") {
             disasterType = "Ice"
             var newMarker = L.marker([disasters[x].lat, disasters[x].lon])
-            .bindPopup("<h3>Location: " + disasters[x].county + ", " + disasters[x].state + 
-            "<h3><h3>Date: " + disasters[x].date + "<h3><h3>Title: " + disasters[x].title + "</h3>");
+                .bindPopup("<h3>Location: " + disasters[x].county + ", " + disasters[x].state +
+                    "<h3><h3>Date: " + disasters[x].date + "<h3><h3>Title: " + disasters[x].title + "</h3>");
             newMarker.addTo(layers[disasterType]);
         }
         else if (disasters[x].type === "Mud/Landslide") {
             disasterType = "Landslides"
             var newMarker = L.marker([disasters[x].lat, disasters[x].lon])
-            .bindPopup("<h3>Location: " + disasters[x].county + ", " + disasters[x].state + 
-            "<h3><h3>Date: " + disasters[x].date + "<h3><h3>Title: " + disasters[x].title + "</h3>");
+                .bindPopup("<h3>Location: " + disasters[x].county + ", " + disasters[x].state +
+                    "<h3><h3>Date: " + disasters[x].date + "<h3><h3>Title: " + disasters[x].title + "</h3>");
             newMarker.addTo(layers[disasterType]);
         }
         else if (disasters[x].type === "Tsunami") {
             disasterType = "Tsunamis"
             var newMarker = L.marker([disasters[x].lat, disasters[x].lon])
-            .bindPopup("<h3>Location: " + disasters[x].county + ", " + disasters[x].state + 
-            "<h3><h3>Date: " + disasters[x].date + "<h3><h3>Title: " + disasters[x].title + "</h3>");
+                .bindPopup("<h3>Location: " + disasters[x].county + ", " + disasters[x].state +
+                    "<h3><h3>Date: " + disasters[x].date + "<h3><h3>Title: " + disasters[x].title + "</h3>");
             newMarker.addTo(layers[disasterType]);
         }
         else {
             disasterType = "Other"
         }
-        
+
     }
     console.log(layers)
     createMap(layers)
@@ -236,6 +236,7 @@ anime.timeline({ loop: true })
     });
 
 var updateButton = d3.select("#update-button");
-updateButton.on("click", function(){d3.json(url).then(statePoints)});
-$("#show-hide").click(function() {$(".trhide").toggle()});
+updateButton.on("click", function () { d3.json(url).then(statePoints) });
+$("#show-hide").click(function () { $(".trhide").toggle() });
 
+var sq_mi = { "AK": 665384.0, "TX": 268596.5, "CA": 163694.7, "MT": 147039.7, "NM": 121590.3, "AZ": 113990.3, "NV": 110571.8, "CO": 104093.7, "OR": 98378.5, "WY": 97813.0, "MI": 96713.5, "MN": 86935.8, "UT": 84896.9, "ID": 83569.0, "KS": 82278.4, "NE": 77347.8, "SD": 77115.7, "WA": 71298.0, "ND": 70698.3, "OK": 69898.9, "MO": 69707.0, "FL": 65757.7, "WI": 65496.4, "GA": 59425.2, "IL": 57913.6, "IA": 56272.8, "NY": 54555.0, "NC": 53819.2, "AR": 53178.6, "AL": 52420.1, "LA": 52378.1, "MS": 48431.8, "PA": 46054.4, "OH": 44825.6, "VA": 42774.9, "TN": 42144.3, "KY": 40407.8, "IN": 36419.6, "ME": 35379.7, "SC": 32020.5, "WV": 24230.0, "MD": 12405.9, "HI": 10931.7, "MA": 10554.4, "VT": 9616.4, "NH": 9349.2, "NJ": 8722.6, "CT": 5543.4, "DE": 2488.7, "RI": 1544.9 };
