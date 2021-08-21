@@ -118,7 +118,7 @@ function statePoints(disasters) {
 
     var tableBody = d3.select("tbody");
     for (var i=0; i < statePointsSorted.length; i++) {
-        var row = tableBody.append('tr');
+        var row = tableBody.append('tr').classed(`${statePointsSorted[i][0]}`, true);
         row.append('td').text(i + 1);
         row.append('td').text(statePointsSorted[i][0]);
         row.append('td').text(statePointsSorted[i][1]);
