@@ -122,7 +122,11 @@ function statePoints(disasters) {
         row.append('td').text(i + 1);
         row.append('td').text(statePointsSorted[i][0]);
         row.append('td').text(statePointsSorted[i][1]);
+        if (i > 14) {
+            row.classed('trhide', true)
+        }
     };
+    $('.trhide').hide();
 };
 
 
@@ -233,4 +237,5 @@ anime.timeline({ loop: true })
 
 var updateButton = d3.select("#update-button");
 updateButton.on("click", function(){d3.json(url).then(statePoints)});
+$("#show-hide").click(function() {$(".trhide").toggle()});
 
