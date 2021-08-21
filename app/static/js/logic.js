@@ -112,8 +112,19 @@ function statePoints(disasters) {
         }
     };
 
-    entries = Object.entries(statePoints);
-    statePointsSorted = entries.sort((a, b) => b[1] - a[1])
+    var entries = Object.entries(statePoints);
+    var newEntries = []
+    for (entry in entries) {
+        for (area in area_entries) {
+            if (entries[entry][0] === area_entries[area][0]) {
+                state = entries[entry][0]
+                newValue = (entries[entry][1]/area_entries[area][1]).toFixed(2)
+                newEntries.push([state,newValue])
+            }
+        }
+    }
+    console.log(newEntries)
+    var statePointsSorted = newEntries.sort((a, b) => b[1] - a[1])
     console.log(statePointsSorted)
 
     var tableBody = d3.select("tbody");
@@ -239,4 +250,11 @@ var updateButton = d3.select("#update-button");
 updateButton.on("click", function () { d3.json(url).then(statePoints) });
 $("#show-hide").click(function () { $(".trhide").toggle() });
 
-var sq_mi = { "AK": 665384.0, "TX": 268596.5, "CA": 163694.7, "MT": 147039.7, "NM": 121590.3, "AZ": 113990.3, "NV": 110571.8, "CO": 104093.7, "OR": 98378.5, "WY": 97813.0, "MI": 96713.5, "MN": 86935.8, "UT": 84896.9, "ID": 83569.0, "KS": 82278.4, "NE": 77347.8, "SD": 77115.7, "WA": 71298.0, "ND": 70698.3, "OK": 69898.9, "MO": 69707.0, "FL": 65757.7, "WI": 65496.4, "GA": 59425.2, "IL": 57913.6, "IA": 56272.8, "NY": 54555.0, "NC": 53819.2, "AR": 53178.6, "AL": 52420.1, "LA": 52378.1, "MS": 48431.8, "PA": 46054.4, "OH": 44825.6, "VA": 42774.9, "TN": 42144.3, "KY": 40407.8, "IN": 36419.6, "ME": 35379.7, "SC": 32020.5, "WV": 24230.0, "MD": 12405.9, "HI": 10931.7, "MA": 10554.4, "VT": 9616.4, "NH": 9349.2, "NJ": 8722.6, "CT": 5543.4, "DE": 2488.7, "RI": 1544.9 };
+// $("tr").click(function(){
+//     var myClass = $(this).attr("class");
+//     if $()
+// });
+
+var sq_mi = { "AK": 665384.0/1000, "TX": 268596.5/1000, "CA": 163694.7/1000, "MT": 147039.7/1000, "NM": 121590.3/1000, "AZ": 113990.3/1000, "NV": 110571.8/1000, "CO": 104093.7/1000, "OR": 98378.5/1000, "WY": 97813.0/1000, "MI": 96713.5/1000, "MN": 86935.8/1000, "UT": 84896.9/1000, "ID": 83569.0/1000, "KS": 82278.4/1000, "NE": 77347.8/1000, "SD": 77115.7/1000, "WA": 71298.0/1000, "ND": 70698.3/1000, "OK": 69898.9/1000, "MO": 69707.0/1000, "FL": 65757.7/1000, "WI": 65496.4/1000, "GA": 59425.2/1000, "IL": 57913.6/1000, "IA": 56272.8/1000, "NY": 54555.0/1000, "NC": 53819.2/1000, "AR": 53178.6/1000, "AL": 52420.1/1000, "LA": 52378.1/1000, "MS": 48431.8/1000, "PA": 46054.4/1000, "OH": 44825.6/1000, "VA": 42774.9/1000, "TN": 42144.3/1000, "KY": 40407.8/1000, "IN": 36419.6/1000, "ME": 35379.7/1000, "SC": 32020.5/1000, "WV": 24230.0/1000, "MD": 12405.9/1000, "HI": 10931.7/1000, "MA": 10554.4/1000, "VT": 9616.4/1000, "NH": 9349.2/1000, "NJ": 8722.6/1000, "CT": 5543.4/1000, "DE": 2488.7/1000, "RI": 1544.9/1000 };
+var area_entries = Object.entries(sq_mi)
+console.log(area_entries);
