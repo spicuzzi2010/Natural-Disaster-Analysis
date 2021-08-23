@@ -14,9 +14,10 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
         integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
         crossorigin="" />
-    <!-- <link rel="stylesheet" type="text/css" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="../static/css/leaflet.extra-markers.min.css">
     <link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../static/css/leaflet.awesome-markers.css">
     <link rel="stylesheet" type="text/css" href="../static/css/style.css">
 </head>
 
@@ -53,8 +54,8 @@
     <br>
     <h3 class="text-center">Which state is the most dangerous?</h3>
     <p class="text-center">
-        Each state is given a point if a registered disaster occurred in that state. The results are listed in the table
-        below. <br> Choose your own point values for each disaster type.
+        Each state is given a point if a registered disaster occurred in that state. Points are divided by a thousandth of a state's area. The resulting scores are listed in the table
+        below. <br> Choose your own weights for each disaster type.
     </p>
     <div class="container">
         <div class="row">
@@ -78,7 +79,7 @@
                         <tr>
                             <th>Rank</th>
                             <th>State</th>
-                            <th>Disaster Points</th>
+                            <th>Disaster Score</th>
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -184,6 +185,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
     <script src="https://unpkg.com/gridjs/dist/gridjs.umd.js"></script>
+    <script src="https://kit.fontawesome.com/6081d1236c.js" crossorigin="anonymous"></script>
+    <script src="../static/js/leaflet.awesome-markers.js"></script>
     <script type="text/javascript" src="../static/js/data.js"></script>
     <script type="text/javascript" src="../static/js/logic.js"></script>
 
