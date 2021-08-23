@@ -8,7 +8,7 @@ body,
 
 .legend {
     padding: 10px;
-    font-family: Sanchez, serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
     font-weight: bold;
     line-height: 18px;
@@ -18,29 +18,41 @@ body,
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 
-.legend .low {
-    color: #ec8a2e;
+.legend .earthquake {
+    color: darkred;
 }
 
-.legend .empty {
-    color: #a0353a;
+.legend .fire {
+    color: red;
 }
 
-.legend .coming-soon {
-    color: #f4ba48;
+.legend .tornado {
+    color: gray;
 }
 
-.legend .healthy {
-    color: #1b904f;
+.legend .hurricane {
+    color: cadetblue;
 }
 
-.legend .out-of-order {
-    color: #007dff;
+.legend .flood {
+    color: blue;
+}
+
+.legend .ice {
+    color: darkblue;
+}
+
+.legend .landslide {
+    color: black;
+}
+
+.legend .tsunami {
+    color: darkviolet;
 }
 
 .ml3 {
     font-weight: 900;
-    font-size: 3.5em;
+    font-size: 2.5em;
 }
 
 td {
