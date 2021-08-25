@@ -12,9 +12,9 @@ FEMA's commentary on the Mission Assignment dataset:
 “Mission Assignment, as defined in the 44 Code of Federal Regulations, is a work order issued by FEMA to another Federal agency directing completion of a specified task and citing funding, other managerial controls, and guidance. Mission Assignments are essential and powerful tools for federal emergency management under the Stafford Act. Mission Assignments are distinct because they allow for deployment, employment and assistance from the full range of federal resources to support disaster needs.” -FEMA commentary on dataset
 
 ## Website and Presentation Slides
-- Website
-- Presentation Link 
-https://docs.google.com/presentation/d/1hf62hA5lI5pDgIPthLenRxxkLpOZf36w3VvTkHR4zUw/edit#slide=id.ge726d615ea_0_0 https://natural-disaster-analysis.herokuapp.com/
+- [Website](https://natural-disaster-analysis.herokuapp.com/)
+- [Presentation Link](https://docs.google.com/presentation/d/1hf62hA5lI5pDgIPthLenRxxkLpOZf36w3VvTkHR4zUw/edit#slide=id.ge726d615ea_0_0)
+ 
 
 ## ETL
 A FEMA-declared disaster dataset with over 21,000 records since 2010 was used as our primary source. Coordinates (lat, lon) for each disaster record were retrieved with functions created using GeoPy. This updated dataset was then cleaned and loaded to a PostgreSQL database that can run multiple times in succession and will replace current values if they exist.
@@ -28,7 +28,7 @@ The API interfaces with our JS and is used as the primary source of data reveale
 To provide additional context to our findings, machine learning was applied to the dataset to discover any correlations that exist between the disaster records and FEMA's payout records for each of those disasters. Very little correlation was found. The images below describe the importance of the various features (e.g. disaster types) in our machine learning models. Logistic Regression and Random Forest were our chosen ML tools.
 
 This heatmap from our logistic regression model shows there are no strong relationships between our features.
-![dataset_heatmap.png](app/assets/images/dataset_heatmap.png)
+![dataset_heatmap.png](/app/assets/images/dataset_heatmap.png)
 
 The Logistic Regression model shows that the top three disaster types according to feature importance are mud/landslides, snow, and severe storms. These disaster types give the greatest weight to the model.
 
