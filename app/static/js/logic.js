@@ -82,19 +82,20 @@ var floodScores = {};
 var iceScores = {};
 var landslideScores = {};
 var tsunamiScores = {};
-var earthquakeWeight = parseInt(d3.select("#earthquake-select").property("value"));
-var tornadoWeight = parseInt(d3.select('#tornado-select').property("value"));
-var fireWeight = parseInt(d3.select('#fire-select').property("value"));
-var hurricaneWeight = parseInt(d3.select('#hurricane-select').property("value"));
-var floodWeight = parseInt(d3.select('#flood-select').property("value"));
-var iceWeight = parseInt(d3.select('#ice-select').property("value"));
-var landslideWeight = parseInt(d3.select('#landslide-select').property("value"));
-var tsunamiWeight = parseInt(d3.select('#tsunami-select').property("value"));
+
 function stateScores(disasters) {
     d3.selectAll('td').remove();
     var allStates = [];
     disasters.forEach(report => allStates.push(report.state));
     var states = [...new Set(allStates)];
+    var earthquakeWeight = parseInt(d3.select("#earthquake-select").property("value"));
+    var tornadoWeight = parseInt(d3.select('#tornado-select').property("value"));
+    var fireWeight = parseInt(d3.select('#fire-select').property("value"));
+    var hurricaneWeight = parseInt(d3.select('#hurricane-select').property("value"));
+    var floodWeight = parseInt(d3.select('#flood-select').property("value"));
+    var iceWeight = parseInt(d3.select('#ice-select').property("value"));
+    var landslideWeight = parseInt(d3.select('#landslide-select').property("value"));
+    var tsunamiWeight = parseInt(d3.select('#tsunami-select').property("value"));
 
     for (var x = 0; x < states.length; x++) {
         statePoints[states[x]] = 0;
@@ -311,7 +312,7 @@ anime.timeline({ loop: true })
     });
 
 var updateButton = d3.select("#update-button");
-updateButton.on("click", function () { d3.json(url).then(statePoints) });
+updateButton.on("click", function () {d3.json(url).then(stateScores) });
 $("#show-hide").click(function () { $(".trhide").toggle() });
 
 var sq_mi = { "AK": 665384.0/1000, "TX": 268596.5/1000, "CA": 163694.7/1000, "MT": 147039.7/1000, "NM": 121590.3/1000, "AZ": 113990.3/1000, "NV": 110571.8/1000, "CO": 104093.7/1000, "OR": 98378.5/1000, "WY": 97813.0/1000, "MI": 96713.5/1000, "MN": 86935.8/1000, "UT": 84896.9/1000, "ID": 83569.0/1000, "KS": 82278.4/1000, "NE": 77347.8/1000, "SD": 77115.7/1000, "WA": 71298.0/1000, "ND": 70698.3/1000, "OK": 69898.9/1000, "MO": 69707.0/1000, "FL": 65757.7/1000, "WI": 65496.4/1000, "GA": 59425.2/1000, "IL": 57913.6/1000, "IA": 56272.8/1000, "NY": 54555.0/1000, "NC": 53819.2/1000, "AR": 53178.6/1000, "AL": 52420.1/1000, "LA": 52378.1/1000, "MS": 48431.8/1000, "PA": 46054.4/1000, "OH": 44825.6/1000, "VA": 42774.9/1000, "TN": 42144.3/1000, "KY": 40407.8/1000, "IN": 36419.6/1000, "ME": 35379.7/1000, "SC": 32020.5/1000, "WV": 24230.0/1000, "MD": 12405.9/1000, "HI": 10931.7/1000, "MA": 10554.4/1000, "VT": 9616.4/1000, "NH": 9349.2/1000, "NJ": 8722.6/1000, "CT": 5543.4/1000, "DE": 2488.7/1000, "RI": 1544.9/1000 };
@@ -319,48 +320,57 @@ var area_entries = Object.entries(sq_mi)
 console.log(area_entries);
 
 $(document).on("click", ".state-row", function(){
+    var earthquakeWeight = parseInt(d3.select("#earthquake-select").property("value"));
+    var tornadoWeight = parseInt(d3.select('#tornado-select').property("value"));
+    var fireWeight = parseInt(d3.select('#fire-select').property("value"));
+    var hurricaneWeight = parseInt(d3.select('#hurricane-select').property("value"));
+    var floodWeight = parseInt(d3.select('#flood-select').property("value"));
+    var iceWeight = parseInt(d3.select('#ice-select').property("value"));
+    var landslideWeight = parseInt(d3.select('#landslide-select').property("value"));
+    var tsunamiWeight = parseInt(d3.select('#tsunami-select').property("value"));
+    
     var stateID = $(this).parent().attr("id");
     $("#state-data").text(`${stateID}`)
     $("#state-area").html(`<b>Area (Sq. Miles):</b> ${sq_mi[`${stateID}`]*1000}`)
-    $("#state-score").html(`<b>${stateID} Disaster Score:</b> ${statePoints[`${stateID}`]}`)
-    var stateEarthquakeScore = earthquakeScores[`${stateID}`]
-    var earthquakeNum = stateEarthquakeScore/earthquakeWeight
+    $("#state-score").html(`<b>${stateID} Disaster Score:</b> ${(statePoints[`${stateID}`]/sq_mi[`${stateID}`]).toFixed(2)}`)
+    var stateEarthquakeScore = earthquakeScores[`${stateID}`]/sq_mi[`${stateID}`]
+    var earthquakeNum = earthquakeScores[`${stateID}`]/earthquakeWeight
     $("#earthquake-num").html(`# of Earthquake Events: ${earthquakeNum}
                                 <br>Earthquake Weight: ${earthquakeWeight}
-                                <br><b><em>Earthquake Score:</em></b> ${stateEarthquakeScore}`)
-    var stateTornadoScore = tornadoScores[`${stateID}`]
-    var tornadoNum = stateTornadoScore/tornadoWeight
+                                <br><b><em>Earthquake Score:</em></b> ${stateEarthquakeScore.toFixed(2)}`)
+    var stateTornadoScore = tornadoScores[`${stateID}`]/sq_mi[`${stateID}`]
+    var tornadoNum = tornadoScores[`${stateID}`]/tornadoWeight
     $("#tornado-num").html(`# of Tornado Events: ${tornadoNum}
                                 <br>Tornado Weight: ${tornadoWeight}
-                                <br><b><em>Tornado Score:</em></b> ${stateTornadoScore}`)
-    var stateFireScore = fireScores[`${stateID}`]
-    var fireNum = stateFireScore/fireWeight
+                                <br><b><em>Tornado Score:</em></b> ${stateTornadoScore.toFixed(2)}`)
+    var stateFireScore = fireScores[`${stateID}`]/sq_mi[`${stateID}`]
+    var fireNum = fireScores[`${stateID}`]/fireWeight
     $("#fire-num").html(`# of Wildfire Events: ${fireNum}
                                 <br>Wildfire Weight: ${fireWeight}
-                                <br><b><em>Wildfire Score:</em></b> ${stateFireScore}`)
-    var stateHurricaneScore = hurricaneScores[`${stateID}`]
-    var hurricaneNum = stateHurricaneScore/hurricaneWeight
+                                <br><b><em>Wildfire Score:</em></b> ${stateFireScore.toFixed(2)}`)
+    var stateHurricaneScore = hurricaneScores[`${stateID}`]/sq_mi[`${stateID}`]
+    var hurricaneNum = hurricaneScores[`${stateID}`]/hurricaneWeight
     $("#hurricane-num").html(`# of Hurricane Events: ${hurricaneNum}
                                 <br>Hurricane Weight: ${hurricaneWeight}
-                                <br><b><em>Hurricane Score:</em></b> ${stateHurricaneScore}`)
-    var stateFloodScore = floodScores[`${stateID}`]
-    var floodNum = stateFloodScore/floodWeight
+                                <br><b><em>Hurricane Score:</em></b> ${stateHurricaneScore.toFixed(2)}`)
+    var stateFloodScore = floodScores[`${stateID}`]/sq_mi[`${stateID}`]
+    var floodNum = floodScores[`${stateID}`]/floodWeight
     $("#flood-num").html(`# of Flood Events: ${floodNum}
                                 <br>Flood Weight: ${floodWeight}
-                                <br><b><em>Flood Score:</em></b> ${stateFloodScore}`)
-    var stateIceScore = iceScores[`${stateID}`]
-    var iceNum = stateIceScore/iceWeight
+                                <br><b><em>Flood Score:</em></b> ${stateFloodScore.toFixed(2)}`)
+    var stateIceScore = iceScores[`${stateID}`]/sq_mi[`${stateID}`]
+    var iceNum = iceScores[`${stateID}`]/iceWeight
     $("#ice-num").html(`# of Severe Ice Storm Events: ${iceNum}
                                 <br>Severe Ice Storm Weight: ${iceWeight}
-                                <br><b><em>Severe Ice Storm Score:</em></b> ${stateIceScore}`)
-    var stateLandslideScore = landslideScores[`${stateID}`]
-    var landslideNum = stateLandslideScore/landslideWeight
+                                <br><b><em>Severe Ice Storm Score:</em></b> ${stateIceScore.toFixed(2)}`)
+    var stateLandslideScore = landslideScores[`${stateID}`]/sq_mi[`${stateID}`]
+    var landslideNum = landslideScores[`${stateID}`]/landslideWeight
     $("#landslide-num").html(`# of Mud/Landslide Events: ${landslideNum}
                                 <br>Mud/Landslide Weight: ${landslideWeight}
-                                <br><b><em>Mud/Landslide Score:</em></b> ${stateLandslideScore}`)
-    var stateTsunamiScore = tsunamiScores[`${stateID}`]
-    var tsunamiNum = stateTsunamiScore/tsunamiWeight
+                                <br><b><em>Mud/Landslide Score:</em></b> ${stateLandslideScore.toFixed(2)}`)
+    var stateTsunamiScore = tsunamiScores[`${stateID}`]/sq_mi[`${stateID}`]
+    var tsunamiNum = tsunamiScores[`${stateID}`]/tsunamiWeight
     $("#tsunami-num").html(`# of Tsunami Events: ${tsunamiNum}
                                 <br>Tsunami Weight: ${tsunamiWeight}
-                                <br><b><em>Tsunami Score:</em></b> ${stateTsunamiScore}`)
+                                <br><b><em>Tsunami Score:</em></b> ${stateTsunamiScore.toFixed(2)}`)
 });
