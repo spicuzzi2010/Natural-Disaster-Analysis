@@ -28,11 +28,13 @@ The API interfaces with our JS and is used as the primary source of data reveale
 To provide additional context to our findings, machine learning was applied to the dataset to discover any correlations that exist between the disaster records and FEMA's payout records for each of those disasters. Very little correlation was found. The images below describe the importance of the various features (e.g. disaster types) in our machine learning models. Logistic Regression and Random Forest were our chosen ML tools.
 
 This heatmap from our logistic regression model shows there are no strong relationships between our features.
-![dataset_heatmap.png](/app/assets/images/dataset_heatmap.png)
+![dataset_heatmap.png](app/static/assets/images/dataset_heatmap.png)
 
 The Logistic Regression model shows that the top three disaster types according to feature importance are mud/landslides, snow, and severe storms. These disaster types give the greatest weight to the model.
+![logistic_regression_name.png](app/static/assets/images/logistic_regression_name.png)
 
 Based on Random Forest, the top three features are severe storms, hurricanes, and snow.
+![important_features.png](app/static/assets/images/important_features.png)
 
 ## Application
 The JavaScript library Leaflet along with Mapbox is used to create an interactive map centered on the United States. Users can select from a variety of disaster types--earthquakes, tornadoes, wildfires, hurricanes, floods, severe ice storms, mud/landslides, and tsunamis--to reveal map markers showing where they have been concentrated over the past ten years. Tooltips allow users to gain more information on individual FEMA-declared emergencies.
