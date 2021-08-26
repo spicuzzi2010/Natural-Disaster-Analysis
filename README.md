@@ -1,5 +1,5 @@
 # What is the Most Dangerous State to Live In?
-In this project we look into which US State is the most dangerous to live in based on the federally declared natural disasters that have occurred in the last ten years. We decided on ths time frame considering the dataset (FEMA Disaster Declarations Summary) is sufficiently large with over 21,000 records. Based on these records we created a point system to give weight to each disaster and award it with a disaster score. These scores are used to determine which states are the most dangerous to live in.
+In this project we looked into which US State is the most dangerous to live in based on the federally declared natural disasters that have occurred in the last ten years. We decided on the time frame considering the dataset (FEMA Disaster Declarations Summary) is sufficiently large with over 21,000 records. Based on these records we created a point system to give weight to each disaster and award it with a disaster score. These scores were used to determine which states are the most dangerous to live in.
 
 We also used FEMA's Mission Assignment dataset from the same period, which describes funding sent to the locations of the disasters. This data was used primarily in analysis using machine learning models.
 
